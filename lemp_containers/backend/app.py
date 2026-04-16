@@ -29,6 +29,22 @@ def index():
     cur.close(); conn.close()
     return jsonify(message=row[0])
 
+@app.get("/api/time")
+def time():
+    conn = mysql.connector.connect(
+        host=DB_HOST,
+        user=DB_USER,
+        password=DB_PASSWORD,
+        database=DB_NAME,
+    )
+    cur = conn.cursor()
+    cur.execute("SELECT NOW() AS time, 'SQL time' AS message");
+    row = cur.fetchone()
+    cur.close(); conn.close()
+    return jsonify(time=row[0], message=row[1])
+
+
+
 if __name__ == '__main__':
     # Dev-only fallback
     app.run(host='0.0.0.0', port=8000, debug=True)

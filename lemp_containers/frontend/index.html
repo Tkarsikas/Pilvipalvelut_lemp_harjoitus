@@ -7,12 +7,26 @@
 <body>
     <h1>Frontend (Nginx)</h1>
     <div id="msg">Loading...</div>
-    <h1>tests</h1>
+    <h2>Time from MySQL</h2>
+    <div id="tmsg">Loading...</div>
+    <div id="time">...</div>
     <script>
             fetch('/api/')
             .then(r => r.json())
             .then(d => { document.getElementById('msg').innerText = d.message; })
             .catch(e => { document.getElementById('msg').innerText = 'APIerror: ' + e; });
+
+            function updateTime(){
+            fetch('/api/time')
+            .then(r => r.json())
+            .then(d => {
+                document.querySelector('#tmsg').innerText = d.message
+                document.querySelector('#time').innerText = d.time})
+            .catch(e => { document.querySelector('#tmsg').innerText = e.message})
+            }
+            updateTime();
+            
+            setInterval(updateTime, 1000);
     </script>
 </body>
 </html>

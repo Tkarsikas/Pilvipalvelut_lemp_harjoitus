@@ -14,7 +14,7 @@ DB_NAME = os.getenv('DB_NAME', 'appdb')
 def health():
  return {'status': 'ok'}
 
-@app.get('/api')
+@app.get('/api/')
 def index():
     """Simple endpoint that greets from DB."""
     conn = mysql.connector.connect(

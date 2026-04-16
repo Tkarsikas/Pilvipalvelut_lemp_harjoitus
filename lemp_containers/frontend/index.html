@@ -7,8 +7,9 @@
 <body>
     <h1>Frontend (Nginx)</h1>
     <div id="msg">Loading...</div>
+    <h1>tests</h1>
     <script>
-            fetch('/api')
+            fetch('/api/')
             .then(r => r.json())
             .then(d => { document.getElementById('msg').innerText = d.message; })
             .catch(e => { document.getElementById('msg').innerText = 'APIerror: ' + e; });
